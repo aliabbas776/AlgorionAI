@@ -12,42 +12,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
-# --- MONGO DB PRIMARY KEY PATCH ---
-# This forces built-in Django apps (auth, admin, sessions, etc.) to use 
-# MongoDB-compatible ObjectIds for their primary keys.
-import django.apps
-from django.apps import AppConfig
-
-# Store original __init__ to avoid recursion if needed, though here we replace the class-level attribute
-original_appconfig_init = AppConfig.__init__
-
-# Patching AppConfig globally BEFORE apps are loaded
-# This ensures every app, including built-in ones, defaults to ObjectIdAutoField
-AppConfig.default_auto_field = 'django_mongodb_backend.fields.ObjectIdAutoField'
-
-# Targeted patching for core Django apps that might have already been initialized or have specific needs
-def patch_core_configs():
-    import django.contrib.auth.apps
-    import django.contrib.admin.apps
-    import django.contrib.contenttypes.apps
-    import django.contrib.sessions.apps
-    
-    configs = [
-        django.contrib.auth.apps.AuthConfig,
-        django.contrib.admin.apps.AdminConfig,
-        django.contrib.contenttypes.apps.ContentTypesConfig,
-        django.contrib.sessions.apps.SessionsConfig,
-    ]
-    for config in configs:
-        config.default_auto_field = 'django_mongodb_backend.fields.ObjectIdAutoField'
-
-patch_core_configs()
-
-DEFAULT_AUTO_FIELD = 'django_mongodb_backend.fields.ObjectIdAutoField'
-# --- END PATCH ---
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,14 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-un&0!z6))nq+bwr-%i1253o2@h-rwwm5ry_1-bz!l#fnj_9)_^'
-
-# --- MONGO DB PRIMARY KEY PATCH ---
-# This must run BEFORE any models are loaded.
-# It ensures built-in apps like 'auth' and 'admin' use MongoDB ObjectIds.
-import django_mongodb_backend.fields
-from django.apps import AppConfig
-AppConfig.default_auto_field = 'django_mongodb_backend.fields.ObjectIdAutoField'
-# --- END PATCH ---
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_mongodb_backend',
+    'corsheaders',
     'app',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,24 +75,10 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-
-
-
-
-# 1. Standard global default
-# (Already set at top)
-
-# 2. Specific overrides for built-in Django apps
-# This forces the internal apps to use MongoDB-compatible IDs
-SILENCED_SYSTEM_CHECKS = ["mongodb.E001"]
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_backend',
-        'NAME': 'algorianAI',
-        'HOST': '127.0.0.1',
-        'PORT': 27017,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -175,6 +118,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
