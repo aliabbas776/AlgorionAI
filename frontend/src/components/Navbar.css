@@ -3,33 +3,53 @@
     top: 0;
     left: 0;
     width: 100%;
+    /* FIXED HEIGHT: This is the key to preventing overlap */
+    height: 100px; 
     z-index: 1000;
-    transition: var(--transition-slow);
-    padding: 1.5rem 0;
-    background: transparent;
+    transition: all 0.3s ease;
+    background: #ffffff; 
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
 }
 
 .navbar.scrolled {
-    padding: 1rem 0;
-    background: rgba(5, 5, 5, 0.85);
+    /* Slightly shorter when scrolling */
+    height: 75px; 
+    background: rgba(255, 255, 255, 0.98); 
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid #eeeeee;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
 }
 
-.logo span {
-    color: var(--accent);
+.nav-logo-image {
+    /* Logo scales based on the navbar height */
+    height: 70px;
+    width: auto;
+    display: block;
+    transition: height 0.3s ease;
+    object-fit: contain;
+}
+
+.navbar.scrolled .nav-logo-image {
+    height: 50px;
 }
 
 .nav-links {
@@ -44,44 +64,62 @@
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    color: var(--text-muted);
+    color: #1a1a1a; 
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .nav-item:hover {
-    color: var(--text-main);
+    color: #4b0082; 
 }
 
 .contact-btn {
-    background: var(--accent);
+    background: #2b44ff; 
     color: white;
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 4px;
     font-weight: 600;
     font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .contact-btn:hover {
+    background: #1a2eb5;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(43, 68, 255, 0.3);
 }
 
 .mobile-toggle {
     display: none;
-    color: var(--text-main);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1a1a1a; 
 }
 
 @media (max-width: 992px) {
+    .navbar {
+        height: 80px; /* Shorter header for tablets/phones */
+    }
+
+    .nav-logo-image {
+        height: 55px;
+    }
+
     .nav-links {
         position: fixed;
         top: 0;
         right: -100%;
         width: 80%;
         height: 100vh;
-        background: var(--primary);
+        background: #ffffff; 
         flex-direction: column;
-        padding-top: 6rem;
+        justify-content: center;
+        padding-top: 2rem;
         transition: 0.4s ease;
         z-index: 999;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
 
     .nav-links.active {
@@ -92,4 +130,14 @@
         display: block;
         z-index: 1001;
     }
+}
+
+.navbar {
+    /* ... existing code ... */
+    height: 90px; /* Slightly reduced height */
+}
+
+.nav-logo-image {
+    height: 65px; /* Scaled logo to match new height */
+    /* ... rest of code ... */
 }

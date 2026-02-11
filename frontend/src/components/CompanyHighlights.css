@@ -1,0 +1,181 @@
+/* CompanyHighlights.css */
+
+.company-highlights-section {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 40px 5%;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlights-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.highlights-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 60px;
+}
+
+/* Left Column */
+.highlights-left {
+    flex: 1;
+    max-width: 500px;
+}
+
+.highlights-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+}
+
+.highlights-title {
+    font-size: 3.5rem;
+    /* Large Headline */
+    font-weight: 300;
+    /* Thin/Light font */
+    line-height: 1.2;
+    font-family: 'Inter', sans-serif;
+    /* Ensuring consistency */
+    color: #ffffff;
+}
+
+/* Right Column */
+.highlights-right {
+    flex: 1;
+    max-width: 600px;
+    position: relative;
+}
+
+/* Decoration line above stats? Optional based on screenshot, adding subtle border */
+.highlights-right::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 40px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin: 0 0 1rem 0;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    max-width: 200px;
+}
+
+/* Awards Banner (Marquee) */
+.awards-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-top: 40px;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    /* Fade edges */
+}
+
+.awards-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+}
+
+.awards-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-33.33%);
+        /* Move by 1/3 since we have 3 sets */
+    }
+}
+
+.award-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.award-placeholder-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.award-logo-item:hover .award-placeholder-text {
+    color: #ffffff;
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .highlights-content {
+        flex-direction: column;
+        gap: 60px;
+        margin-bottom: 80px;
+    }
+
+    .highlights-title {
+        font-size: 2.5rem;
+    }
+
+    .highlights-right::before {
+        display: none;
+        /* Hide top border on mobile stack if odd */
+    }
+
+    .stats-grid {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .awards-banner {
+        justify-content: center;
+    }
+}

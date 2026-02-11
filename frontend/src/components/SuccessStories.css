@@ -1,0 +1,241 @@
+/* SuccessStories.css */
+
+.success-stories-section {
+    padding: 100px 5%;
+    background-color: #ffffff;
+}
+
+.stories-header {
+    margin-bottom: 60px;
+}
+
+.stories-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    margin-bottom: 1.5rem;
+    display: block;
+    font-weight: 600;
+}
+
+.stories-header h2 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #1a1a1a;
+    font-family: serif;
+}
+
+/* Flex Layout for Animation */
+.stories-container {
+    display: flex;
+    gap: 20px;
+    height: 600px;
+    margin-bottom: 80px;
+}
+
+/* Card Styles */
+.story-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100%;
+    flex: 1;
+    /* Default collapsed width */
+    transition: flex 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Smooth expansion */
+}
+
+/* Active State */
+.story-card.active {
+    flex: 12;
+    /* Occupy significantly more space (~80%) */
+    cursor: default;
+}
+
+.story-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    filter: grayscale(1) brightness(0.7) blur(2px);
+    /* Default: Grey, dark, blurred */
+}
+
+.story-card.active .story-bg {
+    filter: grayscale(0) brightness(1) blur(0px);
+    /* Active: Clear, full color */
+}
+
+.story-card:hover .story-bg {
+    transform: scale(1.05);
+}
+
+.story-card:hover .story-bg {
+    transform: scale(1.05);
+    /* Subtle zoom on hover */
+}
+
+.story-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Always show overlay for active card or when hovered */
+.story-card:hover .story-overlay,
+.story-card.active .story-overlay {
+    opacity: 1;
+}
+
+/* Content visibility based on active state */
+.story-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    display: none;
+    /* Hide by default to prevent layout shift */
+}
+
+.story-card.active .story-content {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+/* Plus Icon visibility based on active state */
+.plus-circle-container {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.story-card.active .plus-circle-container {
+    opacity: 0;
+    pointer-events: none;
+    /* Look through */
+}
+
+.video-badge {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+}
+
+.story-content h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    max-width: 90%;
+}
+
+/* Small Card Icons */
+.plus-circle-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.story-card:hover .plus-circle-icon {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+/* Client Logos Bar */
+.clients-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+}
+
+.client-logos {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    opacity: 0.7;
+    filter: grayscale(1);
+    transition: opacity 0.3s;
+}
+
+.client-logos:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.logo-item {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.view-case-study-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: gap 0.3s;
+}
+
+.view-case-study-link:hover {
+    gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .stories-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .story-card {
+        height: 300px;
+        flex: none !important;
+        /* Disable flex growth on mobile */
+        width: 100%;
+    }
+
+    .story-content {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .plus-circle-container {
+        display: none !important;
+    }
+}

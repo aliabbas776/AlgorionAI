@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import './Navbar.css';
+import logo from '../assets/logo.png'; // Ensure the file is named logo.png in assets
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,17 +19,20 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container nav-container">
-                <Link to="/" className="logo">
-                    Algorian<span>AI</span>
+                <Link to="/" className="logo" onClick={() => setIsOpen(false)}>
+                    <img src={logo} alt="AlgorianAI" className="nav-logo-image" />
                 </Link>
 
                 <div className={`nav-links ${isOpen ? 'active' : ''}`}>
                     <div className="nav-item">
-                        <Link to="/services" onClick={() => setIsOpen(false)}>Services <ChevronDown size={16} /></Link>
-                        {/* Mega menu placeholder */}
+                        <Link to="/services" onClick={() => setIsOpen(false)}>
+                            Services <ChevronDown size={16} />
+                        </Link>
                     </div>
                     <div className="nav-item">
-                        <Link to="/industries" onClick={() => setIsOpen(false)}>Industries <ChevronDown size={16} /></Link>
+                        <Link to="/industries" onClick={() => setIsOpen(false)}>
+                            Industries <ChevronDown size={16} />
+                        </Link>
                     </div>
                     <Link to="/portfolio" className="nav-item" onClick={() => setIsOpen(false)}>Portfolio</Link>
                     <Link to="/about" className="nav-item" onClick={() => setIsOpen(false)}>About</Link>
