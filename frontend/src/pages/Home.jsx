@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import axios from 'axios';
 import './Home.css';
 import ServiceCards from '../components/ServiceCards';
@@ -120,11 +120,15 @@ export default function Home() {
                                             </motion.div>
                                         </div>
                                     ) : (
-                                        /* Collapsed Pillar Content */
-                                        <div className="slide-collapsed-content">
-                                            <span className="vertical-label">{slide.label}</span>
-                                            <div className="plus-icon-circle">
-                                                <span className="plus-symbol">+</span>
+                                        /* Collapsed Content - Title Top, Plus Bottom */
+                                        <div className="collapsed-content">
+                                            <div className="collapsed-title-wrapper">
+                                                <span className="collapsed-title">{slide.title}</span>
+                                            </div>
+                                            <div className="collapsed-plus-wrapper">
+                                                <div className="plus-circle-icon">
+                                                    <Plus size={20} />
+                                                </div>
                                             </div>
                                         </div>
                                     )}

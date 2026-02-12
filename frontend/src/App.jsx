@@ -3,7 +3,6 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Services from './pages/Services'
-import Industries from './pages/Industries'
 import Contact from './pages/Contact'
 import Portfolio from './pages/Portfolio'
 import About from './pages/About'
@@ -18,7 +17,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/industries" element={<Industries />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />

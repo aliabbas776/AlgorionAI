@@ -9,13 +9,14 @@ const stats = [
     { value: '20', label: 'offices and delivery centres globally' }
 ];
 
-const awards = [
-    { id: 1, name: 'The Webby Awards', logo: 'https://via.placeholder.com/100x50?text=Webby' }, // Replace with real logos
-    { id: 2, name: 'IAOP', logo: 'https://via.placeholder.com/100x50?text=IAOP' },
-    { id: 3, name: 'Clutch', logo: 'https://via.placeholder.com/100x50?text=Clutch' },
-    { id: 4, name: 'Forrester', logo: 'https://via.placeholder.com/100x50?text=Forrester' },
-    { id: 5, name: 'Gartner', logo: 'https://via.placeholder.com/100x50?text=Gartner' },
-    { id: 6, name: 'Horizon', logo: 'https://via.placeholder.com/100x50?text=Horizon' },
+const techStack = [
+    { id: 1, name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+    { id: 2, name: 'Laravel', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg' },
+    { id: 3, name: 'Next.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+    { id: 4, name: 'Java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+    { id: 5, name: 'PHP', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+    { id: 6, name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+    { id: 7, name: 'Angular', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg' },
 ];
 
 const CompanyHighlights = () => {
@@ -64,26 +65,21 @@ const CompanyHighlights = () => {
                     </div>
                 </div>
 
-                {/* Bottom: Awards Banner (Marquee) */}
+                {/* Bottom: Tech Stack Marquee */}
                 <div className="awards-marquee-container">
                     <div className="awards-track">
-                        {/* First Set */}
-                        {awards.map((award) => (
-                            <div key={`a-${award.id}`} className="award-logo-item">
-                                <span className="award-placeholder-text">{award.name}</span>
-                            </div>
-                        ))}
-                        {/* Duplicate Set for Seemless Loop */}
-                        {awards.map((award) => (
-                            <div key={`b-${award.id}`} className="award-logo-item">
-                                <span className="award-placeholder-text">{award.name}</span>
-                            </div>
-                        ))}
-                        {/* Triplicate Set for wider screens if needed */}
-                        {awards.map((award) => (
-                            <div key={`c-${award.id}`} className="award-logo-item">
-                                <span className="award-placeholder-text">{award.name}</span>
-                            </div>
+                        {/* Multiple sets for seamless loop */}
+                        {[...Array(3)].map((_, setIndex) => (
+                            <React.Fragment key={`set-${setIndex}`}>
+                                {techStack.map((tech) => (
+                                    <div key={`${setIndex}-${tech.id}`} className="tech-box">
+                                        <div className="tech-icon-wrapper">
+                                            <img src={tech.logo} alt={tech.name} className="tech-logo" />
+                                        </div>
+                                        <span className="tech-name">{tech.name}</span>
+                                    </div>
+                                ))}
+                            </React.Fragment>
                         ))}
                     </div>
                 </div>

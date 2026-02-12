@@ -1,0 +1,175 @@
+.services-mega-menu {
+    position: fixed;
+    top: 100px;
+    /* Fixed height of navbar */
+    left: 50%;
+    width: 1400px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    border-top: 1px solid #eee;
+    overflow: hidden;
+}
+
+.mega-menu-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    min-height: 500px;
+}
+
+/* Sidebar Styles */
+.mega-menu-sidebar {
+    width: 320px;
+    background: #111420;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.sidebar-item {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: white;
+}
+
+.sidebar-item p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.sidebar-item.active {
+    background: white;
+    color: #111420;
+}
+
+.sidebar-item.active h3 {
+    color: #111420;
+}
+
+.sidebar-item.active p {
+    color: #444;
+}
+
+.sidebar-item:hover:not(.active) {
+    color: white;
+}
+
+/* Content Area Styles */
+.mega-menu-content {
+    flex: 1;
+    background: white;
+    padding: 3rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Changed to 4 columns to match Screenshot 4 */
+    gap: 0;
+    /* Gaps handled by borders/padding */
+    border-left: 1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
+}
+
+.service-detail-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 2rem;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.service-detail-card:hover {
+    background: #fafafa;
+}
+
+.service-detail-card:hover .service-icon-box {
+    background: var(--brand-blue);
+    color: white;
+}
+
+.service-icon-box {
+    width: 44px;
+    height: 44px;
+    background: #eef2ff;
+    color: #2b44ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.service-title-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #111;
+    transition: color 0.3s ease;
+    margin-left: -1.5rem;
+    /* Offset for arrow presence */
+}
+
+.title-arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    color: var(--brand-blue);
+}
+
+.service-detail-card:hover .service-title-link {
+    color: var(--brand-blue);
+    margin-left: 0;
+}
+
+.service-detail-card:hover .title-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.service-desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.service-sub-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.service-sub-items span {
+    font-size: 0.85rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.service-sub-items span:hover {
+    color: #2b44ff;
+}
+
+/* Navbar integration fix */
+.navbar .nav-item {
+    position: static;
+    /* Required for full-width mega menu */
+}

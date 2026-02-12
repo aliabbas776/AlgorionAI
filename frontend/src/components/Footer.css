@@ -6,21 +6,30 @@
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    grid-template-columns: 2.5fr 1fr 1fr 1.5fr;
+    /* Increased brand column */
     gap: 4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-brand p {
     color: var(--text-muted);
-    margin-top: 1.5rem;
-    max-width: 300px;
+    margin: 1.5rem 0 2.5rem;
+    /* Added bottom margin to prevent social link overlap */
+    max-width: 350px;
+    line-height: 1.6;
 }
 
 .social-links {
     display: flex;
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: auto;
+    /* Push to bottom of brand section if needed */
 }
 
 .social-links a {

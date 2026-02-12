@@ -26,7 +26,6 @@ main {
     margin-top: 140px;
     margin-left: 5%;
     margin-right: 5%;
-    /* No border or overflow here to allow gaps to show page bg */
 }
 
 /* ==========================================================================
@@ -34,31 +33,23 @@ main {
    ========================================================================== */
 .hero-slider-container {
     display: flex;
-    gap: 15px;
-    /* Separate pillars */
+    gap: 20px;
     height: 100%;
     width: 100%;
 }
 
 .hero-slide-panel {
     position: relative;
-    height: 100%;
-    border-radius: 40px;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-
-    /* Flex Expansion Logic */
-    flex: 0.5;
-    /* Default collapsed state width ratio */
-    min-width: 80px;
-    /* Ensure pillar visibility */
-
-    transition: flex 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    height: 100%;
+    flex: 0.7;
+    transition: flex 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .hero-slide-panel.active {
     flex: 12;
-    /* Expanded ratio relative to others (Extreme expansion) */
     cursor: default;
 }
 
@@ -70,14 +61,12 @@ main {
     inset: 0;
     background-size: cover;
     background-position: center;
-    transition: transform 0.6s ease, filter 0.6s ease;
-    filter: grayscale(1) brightness(0.6) blur(2px);
-    /* Default: Inactive state */
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    filter: grayscale(1) brightness(0.7) blur(2px);
 }
 
 .hero-slide-panel.active .slide-bg {
     filter: grayscale(0) brightness(1) blur(0px);
-    /* Active: Clear, full color */
 }
 
 .hero-slide-panel:hover .slide-bg {
@@ -87,19 +76,14 @@ main {
 .slide-overlay {
     position: absolute;
     inset: 0;
-    transition: background 0.4s ease;
-    background: rgba(0, 0, 0, 0.4);
-    /* Darken inactive */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
+.hero-slide-panel:hover .slide-overlay,
 .hero-slide-panel.active .slide-overlay {
-    background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
-    /* Text readable overlay */
-}
-
-.hero-slide-panel:hover:not(.active) .slide-overlay {
-    background: rgba(0, 0, 0, 0.2);
-    /* Lighter on hover */
+    opacity: 1;
 }
 
 /* ==========================================================================
@@ -118,35 +102,34 @@ main {
    5. EXPANDED CONTENT (Active State)
    ========================================================================== */
 .slide-expanded-content {
-    padding: 0 5rem;
-    /* Padding for main text */
+    padding: 60px 50px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     color: white;
-    white-space: nowrap;
-    /* Prevent wrap during transition if overflow issues occur */
-    overflow: hidden;
-    /* Hide content while colliding */
     opacity: 1;
+}
+
+/* Ensure the motion container fills the height so awards can push to bottom */
+.slide-expanded-content>div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Text Styles */
 .slide-expanded-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 800;
-    white-space: normal;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    line-height: 1.2;
 }
 
 .slide-expanded-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     max-width: 600px;
-    line-height: 1.6;
+    line-height: 1.4;
     opacity: 0.9;
-    white-space: normal;
 }
 
 .hero-label {
@@ -169,78 +152,101 @@ main {
 
 /* Awards in Expanded Content */
 .awards-preview {
-    margin-top: 4rem;
+    margin-top: auto;
+    /* Push to bottom */
     display: flex;
     align-items: center;
-    gap: 2.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 2.5rem;
+    gap: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    /* Clearer white line */
+    padding-top: 2rem;
+    width: 100%;
 }
 
 .award-item {
     font-weight: 700;
     letter-spacing: 1px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .award-logo {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 /* ==========================================================================
-   6. COLLAPSED CONTENT (Inactive State)
+   6. COLLAPSED CONTENT (Match SuccessStories)
    ========================================================================== */
-.slide-collapsed-content {
-    height: 100%;
+.plus-circle-container {
+    opacity: 1;
+    transition: opacity 0.3s ease;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    /* Bottom aligned */
-    padding: 30px 0;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 30px;
 }
 
-.vertical-label {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    white-space: nowrap;
-    margin-bottom: 2rem;
+.hero-slide-panel.active .plus-circle-container {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.plus-icon-circle {
+.plus-circle-icon {
     width: 40px;
     height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 20px;
     transition: all 0.3s;
+    color: white;
 }
 
-.hero-slide-panel:hover .plus-icon-circle {
+.collapsed-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* Push title to top, plus to bottom */
+    padding: 50px 0;
+    /* Premium spacing */
+}
+
+.collapsed-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    /* Text flows bottom -> top */
+}
+
+.collapsed-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+.hero-slide-panel:hover .plus-circle-icon {
     background: white;
-    color: var(--brand-blue);
+    color: black;
     border-color: white;
 }
 
 /* ==========================================================================
-   7. CTA & FOOTER (Unchanged)
+   7. CTA & FOOTER
    ========================================================================== */
 .floating-cta {
     position: absolute;
-    bottom: 10%;
-    right: 20%;
-    /* Position relative */
+    bottom: 40px;
+    right: 40px;
     z-index: 25;
-    /* Above expanded panel */
     background: white;
     color: #050505;
     padding: 1rem;
@@ -283,7 +289,6 @@ main {
 
     .hero-slide-panel {
         flex: 1;
-        /* Stack equally or small */
         width: 100%;
         min-height: 100px;
         transition: height 0.5s ease;
@@ -298,17 +303,7 @@ main {
         padding: 2rem;
     }
 
-    .slide-collapsed-content {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 2rem;
-        align-items: center;
-        width: 100%;
-    }
-
-    .vertical-label {
-        writing-mode: horizontal-tb;
-        transform: rotate(0);
-        margin-bottom: 0;
+    .plus-circle-container {
+        display: none !important;
     }
 }

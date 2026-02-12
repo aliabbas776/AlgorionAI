@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Plus } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
+import ServicesDropdown from './ServicesDropdown';
+import IndustriesDropdown from './IndustriesDropdown';
 import './Navbar.css';
-import logo from '../assets/logo.png'; // Ensure the file is named logo.png in assets
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [showServices, setShowServices] = useState(false);
+    const [showIndustries, setShowIndustries] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,16 +29,34 @@ const Navbar = () => {
                 </Link>
 
                 <div className={`nav-links ${isOpen ? 'active' : ''}`}>
-                    <div className="nav-item">
+                    <div
+                        className="nav-item"
+                        onMouseEnter={() => setShowServices(true)}
+                        onMouseLeave={() => setShowServices(false)}
+                    >
                         <Link to="/services" onClick={() => setIsOpen(false)}>
                             Services <ChevronDown size={16} />
                         </Link>
+
+                        <AnimatePresence>
+                            {showServices && <ServicesDropdown />}
+                        </AnimatePresence>
                     </div>
-                    <div className="nav-item">
-                        <Link to="/industries" onClick={() => setIsOpen(false)}>
+
+                    <div
+                        className="nav-item"
+                        onMouseEnter={() => setShowIndustries(true)}
+                        onMouseLeave={() => setShowIndustries(false)}
+                    >
+                        <span className="nav-item-link">
                             Industries <ChevronDown size={16} />
-                        </Link>
+                        </span>
+
+                        <AnimatePresence>
+                            {showIndustries && <IndustriesDropdown />}
+                        </AnimatePresence>
                     </div>
+
                     <Link to="/portfolio" className="nav-item" onClick={() => setIsOpen(false)}>Portfolio</Link>
                     <Link to="/about" className="nav-item" onClick={() => setIsOpen(false)}>About</Link>
                     <Link to="/blog" className="nav-item" onClick={() => setIsOpen(false)}>Insights</Link>
