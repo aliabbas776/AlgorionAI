@@ -23,6 +23,8 @@
     display: flex;
     gap: 20px;
     overflow-x: auto;
+    padding-top: 20px;
+    /* Add space for hover lift */
     padding-bottom: 40px;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -49,9 +51,16 @@
 
 /* 1. Questionnaire Card Styles */
 .questionnaire-card {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
     padding: 40px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.questionnaire-card:hover {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
 }
 
 .question-step {
@@ -69,7 +78,7 @@
 .question-header h3 {
     font-size: 1.4rem;
     font-weight: 500;
-    color: #1a1a1a;
+    color: inherit;
     max-width: 80%;
 }
 
@@ -102,18 +111,43 @@
     border-color: #111;
 }
 
+.questionnaire-card:hover .option-pill {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.questionnaire-card:hover .option-pill.selected {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
 .question-placeholder {
     padding: 30px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     color: #999;
     font-size: 1.1rem;
     font-weight: 400;
 }
 
+.questionnaire-card:hover .question-placeholder {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
 /* 2. Service Card Styles */
 .service-card {
     padding: 0;
-    color: white;
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid #eeeeee;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.service-card:hover {
+    background: #000000;
+    /* Solid black on hover */
+    color: #ffffff;
+    border-color: #000000;
 }
 
 .service-content-top {
@@ -127,6 +161,8 @@
     letter-spacing: 2px;
     opacity: 0.6;
     margin-bottom: 2rem;
+    color: inherit;
+    /* Use parent color */
 }
 
 .service-content h3 {
@@ -138,9 +174,10 @@
 
 .service-content p {
     font-size: 1.1rem;
-    opacity: 0.8;
+    opacity: 0.7;
     line-height: 1.6;
     max-width: 90%;
+    color: inherit;
 }
 
 /* Hover Pill Reveal Logic */
@@ -161,7 +198,7 @@
 
 .service-card:hover .service-hover-pill {
     height: calc(100% - 60px);
-    /* Expand to fill card */
+    /* Expand to fill card with 30px margins */
     border-radius: 20px;
 }
 

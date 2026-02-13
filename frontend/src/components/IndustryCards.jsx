@@ -12,7 +12,7 @@ const industries = [
             'Navigate financial risks with ease',
             'Speed up transactions, reduce costs'
         ],
-        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=400'
+        image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop'
     },
     {
         id: 2,
@@ -22,7 +22,7 @@ const industries = [
             'Deliver exceptional patient service',
             'Automate administrative tasks, optimise costs'
         ],
-        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=400'
+        image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop'
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ const industries = [
             'Boost operational efficiency with automation',
             'Reduce your direct carbon footprint'
         ],
-        image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=400'
+        image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop'
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ const industries = [
             'Digitise your public services',
             'Defend against cyber crime'
         ],
-        image: 'https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&q=80&w=400'
+        image: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=800&auto=format&fit=crop'
     }
 ];
 

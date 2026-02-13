@@ -64,7 +64,11 @@ export default function ServiceCards() {
                 <div className="cards-container" ref={containerRef}>
 
                     {/* 1. Questionnaire Card */}
-                    <div className="card questionnaire-card">
+                    <motion.div
+                        className="card questionnaire-card"
+                        whileHover={{ y: -5 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <div className="question-step">
                             <div className="question-header">
                                 <h3>1. What best describes the current state of your software project?</h3>
@@ -86,7 +90,7 @@ export default function ServiceCards() {
                         <div className="question-placeholder" style={{ borderBottom: 'none' }}>
                             3. Does your project have any specific requirements?
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* 2. Service Cards */}
                     {services.map((service) => (

@@ -25,80 +25,151 @@ const Contact = () => {
         }
     };
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5, ease: "easeOut" }
+        }
+    };
+
     return (
         <div className="contact-page">
+            <div className="bg-glow"></div>
+
             <section className="page-hero section-padding">
-                <div className="container">
-                    <span className="tag">Contact Us</span>
-                    <h1>Let's Build Something <span className="premium-gradient">Exceptional</span></h1>
-                </div>
+                <motion.div
+                    className="container"
+                    initial="hidden"
+                    animate="visible"
+                    variants={containerVariants}
+                >
+                    <motion.span className="tag" variants={itemVariants}>Get In Touch</motion.span>
+                    <motion.h1 variants={itemVariants}>
+                        Let's Build Something <span className="premium-gradient">Exceptional</span>
+                    </motion.h1>
+                    <motion.p className="hero-subtitle" variants={itemVariants}>
+                        Have a project in mind? We'd love to hear from you.
+                        Our team is ready to help you navigate your AI journey.
+                    </motion.p>
+                </motion.div>
             </section>
 
             <section className="contact-section section-padding">
                 <div className="container contact-grid">
-                    <div className="contact-info">
-                        <div className="info-item">
-                            <Mail className="icon" />
-                            <div>
+                    <motion.div
+                        className="contact-info"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={containerVariants}
+                    >
+                        <motion.div className="info-card" variants={itemVariants}>
+                            <div className="info-header">
+                                <div className="icon-wrapper">
+                                    <Mail className="icon" />
+                                </div>
                                 <h3>Email Us</h3>
-                                <p>hello@algorian.ai</p>
-                                <p>partners@algorian.ai</p>
                             </div>
-                        </div>
-                        <div className="info-item">
-                            <Phone className="icon" />
-                            <div>
+                            <div className="info-body">
+                                <p className="label">Main Support</p>
+                                <p className="value">info@algorionai.com</p>
+                            </div>
+                        </motion.div>
+
+                        <motion.div className="info-card" variants={itemVariants}>
+                            <div className="info-header">
+                                <div className="icon-wrapper">
+                                    <Phone className="icon" />
+                                </div>
                                 <h3>Call Us</h3>
-                                <p>+1 (555) 000-1111</p>
-                                <p>+44 20 7946 0000</p>
                             </div>
-                        </div>
-                        <div className="info-item">
-                            <MapPin className="icon" />
-                            <div>
+                            <div className="info-body">
+                                <div className="info-row">
+                                    <p className="label">Global</p>
+                                    <p className="value">+1 (555) 000-1111</p>
+                                </div>
+                                <div className="info-row">
+                                    <p className="label">UK Office</p>
+                                    <p className="value">+44 20 7946 0000</p>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div className="info-card" variants={itemVariants}>
+                            <div className="info-header">
+                                <div className="icon-wrapper">
+                                    <MapPin className="icon" />
+                                </div>
                                 <h3>Visit Us</h3>
-                                <p>Silicon Valley, CA</p>
-                                <p>London, UK</p>
                             </div>
-                        </div>
-                    </div>
+                            <div className="info-body">
+                                <p className="label">London Office</p>
+                                <p className="value">Romford London, UK</p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
 
                     <motion.div
                         className="contact-form-container"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
+                        <div className="form-header">
+                            <h2>Send us a message</h2>
+                            <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                        </div>
+
                         <form onSubmit={handleSubmit} className="contact-form">
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    placeholder="Your Name"
-                                    required
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                />
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>First & Last Name</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your name"
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Email Address</label>
+                                    <input
+                                        type="email"
+                                        placeholder="email@company.com"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    />
+                                </div>
                             </div>
                             <div className="form-group">
-                                <input
-                                    type="email"
-                                    placeholder="Your Email"
-                                    required
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                />
-                            </div>
-                            <div className="form-group">
+                                <label>Subject</label>
                                 <input
                                     type="text"
-                                    placeholder="Subject"
+                                    placeholder="How can we help?"
                                     value={formData.subject}
                                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                 />
                             </div>
                             <div className="form-group">
+                                <label>Message</label>
                                 <textarea
-                                    placeholder="Your Message"
+                                    placeholder="Tell us about your project..."
                                     rows="5"
                                     required
                                     value={formData.message}
@@ -106,9 +177,14 @@ const Contact = () => {
                                 ></textarea>
                             </div>
                             <button type="submit" className="submit-btn">
-                                Send Message <Send size={18} />
+                                <span>Send Message</span>
+                                <Send size={18} />
                             </button>
-                            {status.msg && <p className={`status-msg ${status.type}`}>{status.msg}</p>}
+                            {status.msg && (
+                                <p className={`status-msg ${status.type}`}>
+                                    {status.msg}
+                                </p>
+                            )}
                         </form>
                     </motion.div>
                 </div>

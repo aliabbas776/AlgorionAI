@@ -117,9 +117,16 @@
     border-radius: 12px;
     overflow: hidden;
     margin-top: auto;
+    background: #f0f0f0;
+    /* Fallback background */
+    min-height: 350px;
+    /* Ensure a stable height */
 }
 
 .preview-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

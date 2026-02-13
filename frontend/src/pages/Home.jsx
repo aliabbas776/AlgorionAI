@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, Plus, ArrowUpRight } from 'lucide-react';
 import axios from 'axios';
 import './Home.css';
 import ServiceCards from '../components/ServiceCards';
@@ -111,11 +112,53 @@ export default function Home() {
                                                 <p>{slide.subtitle}</p>
 
                                                 {/* Awards Section - Only on Active Slide */}
-                                                <div className="awards-preview">
-                                                    <span className="award-item">AWARDS</span>
-                                                    <div className="award-logo">ISO 9001</div>
-                                                    <div className="award-logo">ISO 27001</div>
-                                                    <div className="award-logo">CLUTCH TOP 1000</div>
+                                                <div className="awards-preview" style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginTop: 'auto' }}>
+                                                    <span className="award-item" style={{ opacity: 0.6, fontSize: '0.8rem', letterSpacing: '1px' }}>AWARDS</span>
+                                                    <div className="award-logo" style={{ opacity: 0.8, fontSize: '0.9rem', fontWeight: '600' }}>ISO 9001</div>
+                                                    <div className="award-logo" style={{ opacity: 0.8, fontSize: '0.9rem', fontWeight: '600' }}>ISO 27001</div>
+                                                    <div className="award-logo" style={{ opacity: 0.8, fontSize: '0.9rem', fontWeight: '600' }}>CLUTCH TOP 1000</div>
+
+                                                    {/* Navigation Arrows Inside Expanded Content */}
+                                                    <div className="hero-nav-buttons" style={{ marginLeft: 'auto', display: 'flex', gap: '1rem' }}>
+                                                        <button
+                                                            onClick={(e) => { e.stopPropagation(); prevSlide(); }}
+                                                            className="hero-nav-btn"
+                                                            style={{
+                                                                width: '45px',
+                                                                height: '45px',
+                                                                borderRadius: '50%',
+                                                                background: 'rgba(255, 255, 255, 0.1)',
+                                                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                                color: 'white',
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.3s'
+                                                            }}
+                                                        >
+                                                            <ChevronLeft size={20} />
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => { e.stopPropagation(); nextSlide(); }}
+                                                            className="hero-nav-btn"
+                                                            style={{
+                                                                width: '45px',
+                                                                height: '45px',
+                                                                borderRadius: '50%',
+                                                                background: 'rgba(255, 255, 255, 0.1)',
+                                                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                                color: 'white',
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
+                                                                cursor: 'pointer',
+                                                                transition: 'all 0.3s'
+                                                            }}
+                                                        >
+                                                            <ChevronRight size={20} />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </motion.div>
                                         </div>
@@ -147,58 +190,26 @@ export default function Home() {
                 >
                     <div className="cta-inner">
                         <div className="cta-img">
-                            <img src="https://via.placeholder.com/80" alt="Team" />
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                poster="https://eleks.com/wp-content/uploads/cta-video-poster-small.jpg"
+                                className="cta-video"
+                                src="https://eleks.com/wp-content/uploads/cta-video-small.webm"
+                            >
+                            </video>
                         </div>
                         <div className="cta-text">
-                            <p>Receive a complimentary discovery session</p>
-                            <a href="#contact">
-                                Book now →
-                            </a>
+                            <p>Receive a complimentary consultation</p>
+                            <Link to="/contact">
+                                Book now <ArrowUpRight size={16} />
+                            </Link>
                         </div>
                     </div>
                 </motion.div>
 
-                {/* Navigation Arrows */}
-                <div style={{
-                    position: 'absolute',
-                    bottom: '2rem',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    display: 'flex',
-                    gap: '1rem',
-                    zIndex: 20
-                }}>
-                    <button
-                        onClick={prevSlide}
-                        style={{
-                            padding: '0.75rem',
-                            borderRadius: '50%',
-                            background: 'rgba(255, 255, 255, 0.1)',
-                            backdropFilter: 'blur(10px)',
-                            color: 'white',
-                            border: '1px solid rgba(255, 255, 255, 0.2)',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s'
-                        }}
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button
-                        onClick={nextSlide}
-                        style={{
-                            padding: '0.75rem',
-                            borderRadius: '50%',
-                            background: 'rgba(255, 255, 255, 0.1)',
-                            backdropFilter: 'blur(10px)',
-                            color: 'white',
-                            border: '1px solid rgba(255, 255, 255, 0.2)',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s'
-                        }}
-                    >
-                        <ChevronRight size={24} />
-                    </button>
-                </div>
             </div>
             <ServiceCards />
             <SuccessStories />

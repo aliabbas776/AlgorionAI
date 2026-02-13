@@ -4,7 +4,7 @@ import { industriesData } from '../constants/industriesData';
 import './IndustriesDropdown.css';
 
 const IndustriesDropdown = () => {
-    const [activeIndustry, setActiveIndustry] = React.useState(industriesData[0]);
+    const [activeIndustry, setActiveIndustry] = useState(industriesData[0]);
 
     return (
         <motion.div
@@ -47,15 +47,18 @@ const IndustriesDropdown = () => {
                             <div className="preview-text">
                                 <h2 className="preview-main-title">Innovative solutions across industries</h2>
                                 <p className="preview-subtitle">
-                                    Expert software services tailored to meet the unique needs of every sector.
+                                    {activeIndustry.description || "Expert software services tailored to meet the unique needs of every sector."}
                                 </p>
                             </div>
                             <div className="preview-image-container">
-                                <img
-                                    src={activeIndustry.image}
-                                    alt={activeIndustry.name}
-                                    className="preview-image"
-                                />
+                                {activeIndustry.image && (
+                                    <img
+                                        key={activeIndustry.id}
+                                        src={activeIndustry.image}
+                                        alt={activeIndustry.name}
+                                        className="preview-image"
+                                    />
+                                )}
                                 <div className="image-overlay"></div>
                             </div>
                         </motion.div>
