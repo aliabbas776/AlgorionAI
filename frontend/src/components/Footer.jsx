@@ -40,7 +40,7 @@ const Footer = () => {
                     <h3>Contact</h3>
                     <p>Address: Romford London, UK</p>
                     <p>Email: info@algorionai.com</p>
-                    <p>Phone: +1 (555) 000-1111</p>
+                    <p>Phone: +44 7404 825779</p>
                 </div>
             </div>
             <div className="footer-bottom">

@@ -98,12 +98,12 @@ const Contact = () => {
                             </div>
                             <div className="info-body">
                                 <div className="info-row">
-                                    <p className="label">Global</p>
-                                    <p className="value">+1 (555) 000-1111</p>
+                                    {/* <p className="label">Global</p>
+                                    <p className="value">+1 (555) 000-1111</p> */}
                                 </div>
                                 <div className="info-row">
                                     <p className="label">UK Office</p>
-                                    <p className="value">+44 20 7946 0000</p>
+                                    <p className="value"> +44 7404 825779</p>
                                 </div>
                             </div>
                         </motion.div>
