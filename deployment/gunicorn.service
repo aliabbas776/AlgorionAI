@@ -1,0 +1,20 @@
+[Unit]
+Description=Gunicorn daemon for AlgorianAI Django application
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/var/www/algorianai/main
+Environment="PATH=/var/www/algorianai/venv/bin"
+EnvironmentFile=/var/www/algorianai/.env
+ExecStart=/var/www/algorianai/venv/bin/gunicorn \
+          --workers 3 \
+          --bind 127.0.0.1:8000 \
+          --timeout 120 \
+          --access-logfile /var/log/gunicorn/access.log \
+          --error-logfile /var/log/gunicorn/error.log \
+          main.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
