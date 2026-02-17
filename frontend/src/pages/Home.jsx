@@ -2,51 +2,54 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Plus, ArrowUpRight } from 'lucide-react';
-import axios from 'axios';
 import './Home.css';
 import ServiceCards from '../components/ServiceCards';
 import SuccessStories from '../components/SuccessStories';
 import CompanyHighlights from '../components/CompanyHighlights';
 import IndustryCards from '../components/IndustryCards';
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
-
-const getImageUrl = (imagePath) => {
-    if (!imagePath) return '';
-    if (imagePath.startsWith('http')) return imagePath;
-    return `${API_BASE_URL}${imagePath}`;
-};
+// Static hero slides data
+const heroSlides = [
+    {
+        id: 1,
+        title: 'Web Development',
+        subtitle: 'Build powerful, scalable web applications with cutting-edge technologies and modern frameworks',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1920',
+        order: 1
+    },
+    {
+        id: 2,
+        title: 'AI & Machine Learning',
+        subtitle: 'Transform your business with intelligent solutions powered by artificial intelligence and data science',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1920',
+        order: 2
+    },
+    {
+        id: 3,
+        title: 'Cloud Solutions',
+        subtitle: 'Scale your infrastructure with secure, reliable cloud computing and DevOps practices',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1920',
+        order: 3
+    },
+    {
+        id: 4,
+        title: 'Mobile Development',
+        subtitle: 'Create seamless mobile experiences with native and cross-platform application development',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1920',
+        order: 4
+    }
+];
 
 export default function Home() {
-    const [heroSlides, setHeroSlides] = useState([]);
     const [activeSlide, setActiveSlide] = useState(0);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchHeroSlides = async () => {
-            try {
-                const response = await axios.get(`${API_BASE_URL}/api/hero-slides/`);
-                const sortedSlides = response.data.sort((a, b) => a.order - b.order);
-                setHeroSlides(sortedSlides);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching hero slides:', error);
-                setLoading(false);
-            }
-        };
-
-        fetchHeroSlides();
-    }, []);
-
-    useEffect(() => {
-        if (heroSlides.length === 0) return;
-
         const interval = setInterval(() => {
             setActiveSlide((prev) => (prev + 1) % heroSlides.length);
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [heroSlides.length]);
+    }, []);
 
     const nextSlide = () => {
         setActiveSlide((prev) => (prev + 1) % heroSlides.length);
@@ -55,22 +58,6 @@ export default function Home() {
     const prevSlide = () => {
         setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
     };
-
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
-                <div className="text-white text-xl">Loading...</div>
-            </div>
-        );
-    }
-
-    if (heroSlides.length === 0) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
-                <div className="text-white text-xl">No hero slides available</div>
-            </div>
-        );
-    }
 
     return (
         <>
@@ -89,7 +76,7 @@ export default function Home() {
                                 <div
                                     className="slide-bg"
                                     style={{
-                                        backgroundImage: `url(${getImageUrl(slide.image)})`
+                                        backgroundImage: `url(${slide.image})`
                                     }}
                                 />
                                 <div className="slide-overlay" />
