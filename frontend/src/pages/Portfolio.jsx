@@ -58,26 +58,21 @@ const staticCases = [
 const Portfolio = () => {
     return (
         <div className="portfolio-page">
-            <section className="page-hero section-padding">
+            <section className="page-hero">
                 <div className="container">
-                    <motion.span
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="tag"
-                    >
-                        Portfolio
-                    </motion.span>
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: true }}
                     >
                         Success Stories that <span className="premium-gradient">Matter</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        viewport={{ once: true }}
                     >
                         Explore a selection of our latest projects where innovation meets execution. From AI-powered solutions to scalable web and mobile applications, each product reflects our commitment to quality, performance, and impactful digital experiences.
                     </motion.p>

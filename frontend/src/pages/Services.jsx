@@ -18,7 +18,7 @@ const Services = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <span className="hero-tag">Services</span>
-                        <h1>AlgorianAI Services</h1>
+                        <h1>AlgorionAI Services</h1>
                         <p>End-to-end software engineering and technology consulting services tailored to your business goals.</p>
                         <button className="hero-cta-btn">Talk to an expert</button>
                     </motion.div>

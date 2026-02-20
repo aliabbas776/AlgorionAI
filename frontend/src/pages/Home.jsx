@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Plus, ArrowUpRight } from 'lucide-react';
 import './Home.css';
-import ServiceCards from '../components/ServiceCards';
-import SuccessStories from '../components/SuccessStories';
 import CompanyHighlights from '../components/CompanyHighlights';
 import IndustryCards from '../components/IndustryCards';
 
@@ -198,10 +196,8 @@ export default function Home() {
                 </motion.div>
 
             </div>
-            <ServiceCards />
-            <SuccessStories />
-            <CompanyHighlights />
             <IndustryCards />
+            <CompanyHighlights />
         </>
     );
 }

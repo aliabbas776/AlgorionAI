@@ -55,8 +55,11 @@ const Contact = () => {
                     initial="hidden"
                     animate="visible"
                     variants={containerVariants}
+                    
                 >
-                    <motion.span className="tag" variants={itemVariants}>Get In Touch</motion.span>
+                    <motion.span className="tag" variants={itemVariants}>
+                        Contact Us
+                    </motion.span>
                     <motion.h1 variants={itemVariants}>
                         Let's Build Something <span className="premium-gradient">Exceptional</span>
                     </motion.h1>

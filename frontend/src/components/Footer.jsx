@@ -7,13 +7,12 @@ const Footer = () => {
         <footer className="footer">
             <div className="container footer-grid">
                 <div className="footer-brand">
-                    <Link to="/" className="logo">Algorian<span>AI</span></Link>
+                    <Link to="/" className="logo">Algorion<span>AI</span></Link>
                     <p>Harnessing the power of AI to transform enterprises and drive innovation across industries.</p>
                     <div className="social-links">
-                        <a href="#"><Twitter size={20} /></a>
-                        <a href="#"><Linkedin size={20} /></a>
-                        <a href="#"><Facebook size={20} /></a>
-                        <a href="#"><Github size={20} /></a>
+                        
+                        <a href="https://www.linkedin.com/company/algorionai-ltd" target="_blank" rel="noopener noreferrer"><Linkedin size={20} /></a>
+                      
                     </div>
                 </div>
 
@@ -45,7 +44,7 @@ const Footer = () => {
             </div>
             <div className="footer-bottom">
                 <div className="container">
-                    <p>&copy; 2026 AlgorianAI. All rights reserved.</p>
+                    <p>&copy; 2026 AlgorionAI. All rights reserved.</p>
                     <div className="legal-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>

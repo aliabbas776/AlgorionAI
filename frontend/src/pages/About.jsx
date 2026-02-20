@@ -7,13 +7,13 @@ const About = () => {
         <div className="about-page">
             <section className="page-hero section-padding">
                 <div className="container">
-                    <motion.span
+                    {/* <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="tag"
                     >
                         About Us
-                    </motion.span>
+                    </motion.span> */}
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
